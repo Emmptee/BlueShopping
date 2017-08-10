@@ -1,4 +1,4 @@
-package com.sdf.blueshopping.ui.base.ui.base;
+package com.sdf.blueshopping.ui.base;
 
 import android.content.Intent;
 import android.os.Bundle;

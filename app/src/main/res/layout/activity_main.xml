@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.sdf.blueshopping.ui.base.MainActivity">
+    tools:context="com.sdf.blueshopping.MainActivity">
 
     <android.support.v4.app.FragmentTabHost
         android:layout_width="match_parent"

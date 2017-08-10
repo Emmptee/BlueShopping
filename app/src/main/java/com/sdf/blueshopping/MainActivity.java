@@ -1,22 +1,16 @@
-package com.sdf.blueshopping.ui.base;
+package com.sdf.blueshopping;
 
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.sdf.blueshopping.R;
-import com.sdf.blueshopping.ui.base.ui.base.BaseActivity;
-import com.sdf.blueshopping.ui.base.ui.fragment.AroundFragment;
-import com.sdf.blueshopping.ui.base.ui.fragment.HomeFragment;
-import com.sdf.blueshopping.ui.base.ui.fragment.MeFragment;
-import com.sdf.blueshopping.ui.base.ui.fragment.MoreFragment;
-
-import static android.R.id.tabcontent;
-import static android.R.id.tabhost;
+import com.sdf.blueshopping.ui.base.BaseActivity;
+import com.sdf.blueshopping.ui.fragment.AroundFragment;
+import com.sdf.blueshopping.ui.fragment.HomeFragment;
+import com.sdf.blueshopping.ui.fragment.MeFragment;
+import com.sdf.blueshopping.ui.fragment.MoreFragment;
 
 public class MainActivity extends BaseActivity {
 

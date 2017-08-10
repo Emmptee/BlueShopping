@@ -1,4 +1,4 @@
-package com.sdf.blueshopping.ui.base.ui.fragment;
+package com.sdf.blueshopping.ui.fragment;
 
 import android.support.v4.app.Fragment;
 
