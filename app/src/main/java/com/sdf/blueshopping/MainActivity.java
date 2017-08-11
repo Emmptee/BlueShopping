@@ -12,6 +12,7 @@ import com.sdf.blueshopping.ui.fragment.HomeFragment;
 import com.sdf.blueshopping.ui.fragment.MeFragment;
 import com.sdf.blueshopping.ui.fragment.MoreFragment;
 
+
 public class MainActivity extends BaseActivity {
 
     private FragmentTabHost tabhost;
