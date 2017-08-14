@@ -1,6 +1,7 @@
 package com.sdf.blueshopping.ui.fragment;
 
 import android.app.usage.ConfigurationStats;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,13 +10,20 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.sdf.blueshopping.R;
 import com.sdf.blueshopping.common.AppConstant;
 import com.sdf.blueshopping.entity.HomeGridInfo;
 import com.sdf.blueshopping.network.CallServer;
 import com.sdf.blueshopping.network.HttpListener;
+import com.sdf.blueshopping.ui.activity.CityActivity;
 import com.sdf.blueshopping.ui.base.BaseFragment;
+import com.sdf.blueshopping.utils.ToastUtil;
+import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.yanzhenjie.nohttp.NoHttp;
 import com.yanzhenjie.nohttp.RequestMethod;
 import com.yanzhenjie.nohttp.rest.Request;
@@ -33,6 +41,7 @@ public class HomeFragment extends BaseFragment implements HttpListener<String> {
     private static final int GOOD_REQUEST = 0x01;
     private static final int FILM_REQUEST = 0x02;
     private static final int SCAN_QR_REQUEST = 103;
+    private static final int CITY_REQUEST_CODE = 4000;
 
     private Handler mHandler = new Handler();
     //广告轮播
@@ -42,6 +51,7 @@ public class HomeFragment extends BaseFragment implements HttpListener<String> {
 
     private List<HomeGridInfo> pageOneData = new ArrayList<>();
     private List<HomeGridInfo> pageTwoData = new ArrayList<>();
+    private PullToRefreshListView mRefreshListView;
 
 
     @Nullable
@@ -51,6 +61,7 @@ public class HomeFragment extends BaseFragment implements HttpListener<String> {
             mView = inflater.inflate(R.layout.fragment_home,null);
             initdata();
             autoScroll();
+            initView(mView);
         }
         return mView;
     }
@@ -83,8 +94,42 @@ public class HomeFragment extends BaseFragment implements HttpListener<String> {
             }
         },2000);
     }
-    private void initView(){
-        View
+    private void initView(View view){
+        View titleView = view.findViewById(R.id.home_titleBar);
+        initTitleBar(titleView);
+        mRefreshListView = (PullToRefreshListView) view.findViewById(R.id.home_pull_to_refresh_listview);
+
+        //header
+        //View bannerView = LayoutInflater.from(getActivity()).inflate(R.layout.)
+    }
+
+    private void initTitleBar(View titleView) {
+        LinearLayout cityLayout = (LinearLayout) titleView.findViewById(R.id.titleBar_location_layout);
+        final TextView mCityNane = (TextView) titleView.findViewById(R.id.titleBar_city_name);
+        cityLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CityActivity.class);
+                intent.putExtra(AppConstant.KEY_CITY,mCityNane.getText().toString());
+                startActivityForResult(intent,CITY_REQUEST_CODE);
+            }
+        });
+        ImageView scanQR = (ImageView) titleView.findViewById(R.id.titleBar_scan_image);
+        scanQR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CaptureActivity.class);
+                getActivity().startActivityForResult(intent,SCAN_QR_REQUEST);
+            }
+        });
+        ImageView messageBox = (ImageView) titleView.findViewById(R.id.titleBar_msg_iv);
+        messageBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtil.show(getActivity(),R.string.me_nologin_not_login);
+            }
+        });
+
     }
 
     @Override

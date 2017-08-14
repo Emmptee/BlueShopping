@@ -14,7 +14,7 @@
         <item name="android:background">#50666666</item>
     </style>
 <!--
-    //TitleBar样式
+    //首页TitleBar样式
 -->
     <style name="home_title_bar_style">
         <item name="android:layout_width">match_parent</item>
@@ -22,7 +22,31 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:background">@color/home_title_bar_color</item>
 
-    </style>  
+    </style>
+
+    <style name="base_textview_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="common_left_back_imageview_style" parent="base_textview_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:src">@mipmap/icon_back</item>
+        <item name="android:background">@drawable/back_img_selector</item>
+        <item name="android:padding">15dp</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <style name="common_right_title_textview_style">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:background">@drawable/back_img_selector</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
     
 
 </resources>
