@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,9 +22,11 @@ import com.sdf.blueshopping.common.AppConstant;
 import com.sdf.blueshopping.entity.HomeGridInfo;
 import com.sdf.blueshopping.network.CallServer;
 import com.sdf.blueshopping.network.HttpListener;
+import com.sdf.blueshopping.ui.Adapter.BannerPagerAdapter;
 import com.sdf.blueshopping.ui.activity.CityActivity;
 import com.sdf.blueshopping.ui.base.BaseFragment;
 import com.sdf.blueshopping.utils.ToastUtil;
+import com.sdf.blueshopping.widget.Indicator;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.yanzhenjie.nohttp.NoHttp;
 import com.yanzhenjie.nohttp.RequestMethod;
@@ -31,6 +35,8 @@ import com.yanzhenjie.nohttp.rest.Response;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.R.attr.banner;
 
 /**
  * Created by shidongfang on 2017/8/7.
@@ -43,6 +49,7 @@ public class HomeFragment extends BaseFragment implements HttpListener<String> {
     private static final int SCAN_QR_REQUEST = 103;
     private static final int CITY_REQUEST_CODE = 4000;
 
+    private int [] imgRes = new int[]{R.drawable.banner01,R.drawable.banner02,R.drawable.banner03};
     private Handler mHandler = new Handler();
     //广告轮播
     private ViewPager bannerPager;
@@ -52,6 +59,7 @@ public class HomeFragment extends BaseFragment implements HttpListener<String> {
     private List<HomeGridInfo> pageOneData = new ArrayList<>();
     private List<HomeGridInfo> pageTwoData = new ArrayList<>();
     private PullToRefreshListView mRefreshListView;
+    private Indicator bannerIndicator;
 
 
     @Nullable
@@ -100,7 +108,17 @@ public class HomeFragment extends BaseFragment implements HttpListener<String> {
         mRefreshListView = (PullToRefreshListView) view.findViewById(R.id.home_pull_to_refresh_listview);
 
         //header
-        //View bannerView = LayoutInflater.from(getActivity()).inflate(R.layout.)
+        View bannerView = LayoutInflater.from(getActivity()).inflate(R.layout.home_head_page,null);
+        bannerPager = (ViewPager) bannerView.findViewById(R.id.home_head_include_banner);
+        bannerIndicator = (Indicator) bannerView.findViewById(R.id.home_banner_indicator);
+        bannerPager.setAdapter(new BannerPagerAdapter(getChildFragmentManager(),imgRes));
+        bannerPager.addOnAdapterChangeListener(new ViewPager.OnAdapterChangeListener() {
+            @Override
+            public void onAdapterChanged(@NonNull ViewPager viewPager, @Nullable PagerAdapter oldAdapter, @Nullable PagerAdapter newAdapter) {
+
+            }
+        });
+
     }
 
     private void initTitleBar(View titleView) {
