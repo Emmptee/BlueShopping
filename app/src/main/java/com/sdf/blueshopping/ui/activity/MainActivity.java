@@ -1,4 +1,4 @@
-package com.sdf.blueshopping;
+package com.sdf.blueshopping.ui.activity;
 
 import android.support.v4.app.FragmentTabHost;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.sdf.blueshopping.R;
 import com.sdf.blueshopping.ui.base.BaseActivity;
 import com.sdf.blueshopping.ui.fragment.AroundFragment;
 import com.sdf.blueshopping.ui.fragment.HomeFragment;

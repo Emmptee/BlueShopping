@@ -6,9 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.sdf.blueshopping.ui.fragment.BannerFragment;
 
-/**
- * Created by shidongfang on 2017/8/15.
- */
+
 
 public class BannerPagerAdapter extends FragmentPagerAdapter {
 

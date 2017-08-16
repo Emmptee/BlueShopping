@@ -2,9 +2,6 @@ package com.sdf.blueshopping.entity;
 
 import java.util.List;
 
-/**
- * Created by asus on 2016/9/3.
- */
 public class FilmInfo {
 
     /**

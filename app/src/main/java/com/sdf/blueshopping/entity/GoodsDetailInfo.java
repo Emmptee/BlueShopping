@@ -3,9 +3,6 @@ package com.sdf.blueshopping.entity;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by asus on 2016/9/6.
- */
 public class GoodsDetailInfo implements Serializable {
 
     /**

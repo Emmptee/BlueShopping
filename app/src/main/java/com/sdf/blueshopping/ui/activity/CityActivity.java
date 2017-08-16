@@ -21,6 +21,8 @@ import static android.R.attr.id;
  */
 
 public class CityActivity extends BaseActivity{
+    public static final int CITY_RESULT_CODE = 4001;
+
 
     private ImageView mTitleBarIvBack;
     private TextView mTitleBarTvTitle;
@@ -56,5 +58,8 @@ public class CityActivity extends BaseActivity{
             }
         });
         mErrorLayout.setVisibility(View.GONE);
+    }
+    public void setTitle(String cityName) {
+        mTitleBarTvTitle.setText(getString(R.string.current_city)+"-"+cityName);
     }
 }
