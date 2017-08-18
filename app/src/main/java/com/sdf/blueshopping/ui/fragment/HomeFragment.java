@@ -36,6 +36,7 @@ import com.sdf.blueshopping.ui.base.BaseFragment;
 import com.sdf.blueshopping.utils.ToastUtil;
 import com.sdf.blueshopping.widget.Indicator;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
+import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.yanzhenjie.nohttp.NoHttp;
 import com.yanzhenjie.nohttp.RequestMethod;
 import com.yanzhenjie.nohttp.rest.Request;
@@ -221,8 +222,18 @@ public class HomeFragment extends BaseFragment implements HttpListener<String> {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == SCAN_QR_REQUEST){
+            if (null != data){
+                Bundle bundle = data.getExtras();
+                if (bundle == null){
+                    return;
+                }
+                if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS){
+                    String result = bundle.getString()
+                }
+            }
 
+        }
     }
 
     @Override
