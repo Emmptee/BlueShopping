@@ -28,9 +28,11 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     compile project(':libs_PullToRefresh')
-    compile 'com.yanzhenjie.nohttp:nohttp:1.1.3'
+    compile 'com.yolanda.nohttp:nohttp:1.0.5'
     compile 'cn.yipianfengye.android:zxing-library:2.2'
     compile 'com.facebook.fresco:fresco:1.5.0'
     compile 'com.google.code.gson:gson:2.7'
+    compile 'org.greenrobot:eventbus:3.0.0'
+//    compile 'cn.bmob.android:bmob-sdk:3.5.0'
 
 }

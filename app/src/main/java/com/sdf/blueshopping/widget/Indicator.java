@@ -20,7 +20,6 @@ import static android.R.attr.radius;
 
 public class Indicator extends View {
 
-
     /**前景画笔*/
     private Paint mForePaint;
     /**背景画笔*/
@@ -30,22 +29,32 @@ public class Indicator extends View {
     /**小圆点个数*/
     private int number = 3;
     /**小圆点半径*/
-    private int radius = 20;
+    private int radius = 10;
     /**前景色*/
     private int mForeColor = Color.BLUE;
     /**背景色*/
     private int mBgColor = Color.RED;
 
+    /**
+     * 设置偏移
+     * @param position 位置
+     * @param positionOffset 偏移百分比
+     */
+    public void setOffset(int position, float positionOffset) {
+        position %= number;
+        mOffset = (position + positionOffset) * number * radius;
+        invalidate();
+    }
 
     public Indicator(Context context) {
         super(context);
         initPaint();
     }
 
-    public Indicator(Context context, @Nullable AttributeSet attrs) {
+    public Indicator(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.Indicator);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs,R.styleable.Indicator);
         number = typedArray.getInteger(R.styleable.Indicator_indicator_number,number);
         radius = typedArray.getInteger(R.styleable.Indicator_indicator_radius,radius);
         mForeColor = typedArray.getColor(R.styleable.Indicator_indicator_foreColor, mForeColor);
@@ -53,10 +62,6 @@ public class Indicator extends View {
         initPaint();
     }
 
-
-    /**
-     * 画笔
-     */
     private void initPaint() {
         mForePaint = new Paint();
         mForePaint.setAntiAlias(true);
@@ -67,27 +72,17 @@ public class Indicator extends View {
         mBgPaint = new Paint();
         mBgPaint.setAntiAlias(true);
         mBgPaint.setStyle(Paint.Style.STROKE);
-        mBgPaint.setColor(mForeColor);
+        mBgPaint.setColor(mBgColor);
         mBgPaint.setStrokeWidth(2);
-    }
-
-    /**
-     * 设定偏移量
-     * @param position 位置
-     * @param positionOffset 便宜百分比
-     *
-     */
-    public void setmOffset(int position,float positionOffset){
-        position %= number;
-        mOffset = (position + positionOffset) * number * radius;
-        invalidate();
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
         int width = getWidth();
-        int start = width/2 - (radius*2*number+radius*(number-1))/2 +radius;
+        int start = width/2 - (radius*2*number+radius*(number-1))/2 + radius;
+
         for (int i = 0; i < number; i++) {
             //圆心y坐标需要加上strokeWidth/2，因为绘圆绘的是中心圆（半径=外圆半径-strokeWidth/2）
             canvas.drawCircle(start + radius*number*i,radius+1,radius,mBgPaint);
@@ -99,23 +94,23 @@ public class Indicator extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         setMeasuredDimension(measureWidth(widthMeasureSpec),measureHeight(heightMeasureSpec));
     }
-    private int measureHeight(int heightMeasureSpec){
+
+    private int measureHeight(int heightMeasureSpec) {
         int result = 0;
         int specMode = MeasureSpec.getMode(heightMeasureSpec);
         int specSize = MeasureSpec.getSize(heightMeasureSpec);
-        if (specMode == MeasureSpec.EXACTLY){
+        if (specMode == MeasureSpec.EXACTLY) {
             result = specSize;
-        }else if (specMode == MeasureSpec.AT_MOST){
-            result = radius = radius *2 +2;
-        }else {
+        } else if (specMode == MeasureSpec.AT_MOST) {
+            //小圆点直径 + 画笔宽度（strokeWidth/2 * 2）
+            result = radius * 2 + 2;
+        } else {
             result = 100;
-
         }
         return result;
     }
 
-
-    private int measureWidth(int widthMeasureSpec){
+    private int measureWidth(int widthMeasureSpec) {
         int result = 0;
         int specMode = MeasureSpec.getMode(widthMeasureSpec);
         int specSize = MeasureSpec.getSize(widthMeasureSpec);
@@ -127,7 +122,6 @@ public class Indicator extends View {
         } else {
             result = 100;
         }
-
         return result;
     }
 }

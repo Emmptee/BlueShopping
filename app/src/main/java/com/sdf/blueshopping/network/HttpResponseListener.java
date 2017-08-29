@@ -6,14 +6,16 @@ import android.content.DialogInterface;
 import com.sdf.blueshopping.R;
 import com.sdf.blueshopping.ui.widget.WaitDialog;
 import com.sdf.blueshopping.utils.ToastUtil;
-import com.yanzhenjie.nohttp.error.NetworkError;
-import com.yanzhenjie.nohttp.error.NotFoundCacheError;
-import com.yanzhenjie.nohttp.error.TimeoutError;
-import com.yanzhenjie.nohttp.error.URLError;
-import com.yanzhenjie.nohttp.error.UnKnownHostError;
-import com.yanzhenjie.nohttp.rest.OnResponseListener;
-import com.yanzhenjie.nohttp.rest.Request;
-import com.yanzhenjie.nohttp.rest.Response;
+
+import com.yolanda.nohttp.error.NetworkError;
+import com.yolanda.nohttp.error.NotFoundCacheError;
+import com.yolanda.nohttp.error.ParseError;
+import com.yolanda.nohttp.error.TimeoutError;
+import com.yolanda.nohttp.error.URLError;
+import com.yolanda.nohttp.error.UnKnownHostError;
+import com.yolanda.nohttp.rest.OnResponseListener;
+import com.yolanda.nohttp.rest.Request;
+import com.yolanda.nohttp.rest.Response;
 
 import java.net.ProtocolException;
 
@@ -25,21 +27,29 @@ public class HttpResponseListener<T> implements OnResponseListener<T> {
 
     private Context mContext;
     private Request<T> mRequest;
-    private HttpListener<T> mHttpListener;
+    private HttpListener mHttpListener;
     private WaitDialog mWaitDialog;
     private boolean isLoading;
 
-    public HttpResponseListener(Context context,Request<T> request,HttpListener<T> httpListener,
-                                boolean canCancel,boolean isLoading){
+    /**
+     * 构造请求监听器
+     * @param context       上下文环境
+     * @param request       Http请求
+     * @param httpListener  Http请求监听
+     * @param canCancel     进度条是否可以取消
+     * @param isLoading     是否正在加载
+     */
+    public HttpResponseListener(Context context, Request<T> request, HttpListener<T> httpListener,
+                                boolean canCancel, boolean isLoading) {
         mContext = context;
         mRequest = request;
         mHttpListener = httpListener;
-        if (context != null && isLoading){
+        if (context != null && isLoading) {
             mWaitDialog = new WaitDialog(context);
             mWaitDialog.setCancelable(canCancel);
             mWaitDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
-                public void onCancel(DialogInterface dialog) {
+                public void onCancel(DialogInterface dialogInterface) {
                     mWaitDialog.cancel();
                 }
             });
@@ -48,15 +58,15 @@ public class HttpResponseListener<T> implements OnResponseListener<T> {
 
     @Override
     public void onStart(int what) {
-        if (mWaitDialog != null && !mWaitDialog.isShowing() && isLoading){
+        if (mWaitDialog != null && !mWaitDialog.isShowing() && isLoading) {
             mWaitDialog.show();
         }
     }
 
     @Override
-    public void onSucceed(int what, Response<T> response) {
-        if (mContext != null){
-            mHttpListener.onSucceed(what,response);
+    public void onSucceed(int   what, Response<T> response) {
+        if (mContext != null) {
+            mHttpListener.onSucceed(what, response);
         }
     }
 
@@ -76,8 +86,8 @@ public class HttpResponseListener<T> implements OnResponseListener<T> {
             ToastUtil.show(mContext, R.string.error_not_found_cache);
         } else if (exception instanceof ProtocolException) {
             ToastUtil.show(mContext, R.string.error_system_unsupport_method);
-//        } else if (exception instanceof ParseError) {
-//            ToastUtil.show(mContext, R.string.error_parse_data_error);
+        } else if (exception instanceof ParseError) {
+            ToastUtil.show(mContext, R.string.error_parse_data_error);
         } else {
             ToastUtil.show(mContext, R.string.error_unknow);
         }
@@ -88,8 +98,8 @@ public class HttpResponseListener<T> implements OnResponseListener<T> {
 
     @Override
     public void onFinish(int what) {
-        if (mContext != null && mWaitDialog.isShowing()){
-            mWaitDialog.show();
+        if (mContext!=null && mWaitDialog.isShowing()) {
+            mWaitDialog.dismiss();
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.sdf.blueshopping.ui.activity;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentTabHost;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.sdf.blueshopping.ui.fragment.MoreFragment;
 public class MainActivity extends BaseActivity {
 
     private FragmentTabHost tabhost;
+    private android.app.ActionBar actionbar;
     private Class[] fragments = new Class[]{
             HomeFragment.class, AroundFragment.class,
             MeFragment.class, MoreFragment.class
@@ -37,6 +39,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initview();
+        setViewWithIntentData();
     }
     private void initview(){
         tabhost = (FragmentTabHost) findViewById(R.id.main_tabHost);
@@ -48,6 +51,13 @@ public class MainActivity extends BaseActivity {
             tabIcon.setImageResource(icons[i]);
             tabTitle.setText(resTitles[i]);
             tabhost.addTab(tabhost.newTabSpec(""+i).setIndicator(view),fragments[i],null);
+        }
+    }
+    private void setViewWithIntentData() {
+        Intent intent = getIntent();
+        if (intent != null) {
+//            User user = (User) intent.getSerializableExtra(RegisterActivity.INTENT_USER);
+                tabhost.setCurrentTab(2);
         }
     }
 

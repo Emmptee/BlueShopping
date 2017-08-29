@@ -1,7 +1,7 @@
 package com.sdf.blueshopping.network;
 
 
-import com.yanzhenjie.nohttp.rest.Response;
+import com.yolanda.nohttp.rest.Response;
 
 /**
  * Created by asus on 2016/8/30.

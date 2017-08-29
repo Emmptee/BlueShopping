@@ -17,7 +17,7 @@ public class ViewPagerListener implements ViewPager.OnPageChangeListener {
     }
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        mIndicator.setmOffset(position,positionOffset);
+        mIndicator.setOffset(position,positionOffset);
     }
 
     @Override
