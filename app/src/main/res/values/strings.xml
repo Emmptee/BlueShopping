@@ -145,4 +145,31 @@
     <string name="get_order_success">获取订单成功!请等待跳转到支付页面~</string>
     <string name="check_no_plugin">监测到你尚未安装支付插件,无法进行支付,请先安装插件(已打包在本地,无流量消耗),安装结束后重新支付</string>
     <string name="pay_interrupt">支付中断</string>
+
+
+    <string name="lock_pattern_passwd">手势密码</string>
+    <string name="lock_number_passwd">数字密码</string>
+
+    <!--2017/10/10-->
+    <string name="general_title">通用</string>
+    <string name="access_contrl_fingerprint">门禁卡</string>
+    <string name="id_fingerprint">身份卡</string>
+    <string name="entry_usage_fingerprint">月报详情</string>
+    <string name="usage_fingerptint">将密码与指纹用于：</string>
+    <string name="fingerprint_lock_title">指纹锁</string>
+    <string name="add_fingerprint">添加指纹</string>
+    <string name="fingerprint_message_place">放置手指在背部的指纹读取器上</string>
+    <string name="fingerprint_message_error_move">请移开手指，并重新放置</string>
+    <string name="fingerprint_message_error_same">请移开手指，并更换手指位置放置</string>
+    <string name="fingerprint_continue">继续</string>
+    <string name="fingerprint_one">指纹1</string>
+
+    <string name="security_setting">"指纹与密码"</string>
+    <string name="security_change_passwd">"更改密码"</string>
+    <string name="security_gesture_lock">"手势锁"</string>
+    <string name="security_protect">"安全保护"</string>
+    <string name="security_time_note">"若连续10次输入密码错误，将抹除Ora上的数据"</string>
+
+    <string name="mode_switch_text">""</string>
+
 </resources>

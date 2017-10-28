@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="transparent">#00000000</color>
+    <color name="transparent">#00f11010</color>
     <color name="black">#ff646464</color>
     <color name="white">#ffffffff</color>
     <color name="purple">#ffff00ff</color>
@@ -61,4 +61,11 @@
     <color name="orange">#ffff6900</color>
     <color name="content_color">#ff687186</color>
     <color name="city_item_bg">#f0f0f0</color>
+
+
+
+    <color name="divider_vertical_color">#201e1e</color>
+    <color name="chengxing_color">#ffea9566</color>
+    <color name="add_fingerprint_grey">#ffffff</color>
+
 </resources>

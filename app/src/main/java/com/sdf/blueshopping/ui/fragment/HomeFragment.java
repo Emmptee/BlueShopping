@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +60,7 @@ import static android.R.attr.key;
  */
 
 public class HomeFragment extends BaseFragment implements HttpListener<String> {
-
+    private static final String TAG = "HomeFragment";
     private static final int GOOD_REQUEST = 0x01;
     private static final int FILM_REQUEST = 0x02;
     private static final int SCAN_QR_REQUEST = 103;
@@ -263,6 +264,7 @@ public class HomeFragment extends BaseFragment implements HttpListener<String> {
         } else if (requestCode == CITY_REQUEST_CODE && resultCode == CityActivity.CITY_RESULT_CODE) {
             if (data != null) {
                 String cityname = data.getStringExtra(AppConstant.KEY_CITY);
+                Log.d(TAG, "onActivityResult: ------"  +cityname);
                 if (cityname != null) {
                     mCityName.setText(cityname);
                 }
